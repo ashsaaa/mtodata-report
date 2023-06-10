@@ -41,7 +41,7 @@
                 <?php
 
                 //connection
-                include "db_conn.php";
+                include "db_con.php";
 
                 //check connection
                 if ($conn->connect_error) {
@@ -54,7 +54,7 @@
 
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
-                    echo "<p class='det'>Complaint No." . $row["id"]. "</p>
+                    echo "<p class='det'>Complaint No. " . $row["id"]. "</p>
                     <p class='det'>Date: </p>
                     <br>
                     <p class='det'>Complainant: " . $row["complaint_person"]. "</p>
