@@ -1,0 +1,50 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+p {
+    page-break-inside: avoid;
+}
+
+.container {
+    background-color: white;
+}
+
+.header {
+    font-size: 36pt;
+    border-bottom: 1px solid;
+
+}
+
+.det {
+    font-size: 12pt;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.det_con_Desc {
+    font-size: 10pt;
+}
+
+.det_con{
+    margin-bottom: 20px;
+}
+
+.footer {
+    border-top: 1px solid;
+    padding-top: 10px;
+    font-size: 9pt;
+    font-style: italic;
+}
+
+.EPName{
+    font-size: 22pt;
+    margin: 50px 0;
+}
