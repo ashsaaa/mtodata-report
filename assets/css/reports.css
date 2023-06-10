@@ -20,6 +20,7 @@ p {
 .header {
     font-size: 36pt;
     border-bottom: 1px solid;
+    margin-bottom: 20px;
 
 }
 
@@ -29,6 +30,15 @@ p {
     font-weight: bold;
 }
 
+.det_wrap{
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
+
+.detret{
+    font-size: 12pt;
+}
 .det_con_Desc {
     font-size: 10pt;
 }

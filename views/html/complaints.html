@@ -8,7 +8,7 @@
     <title>Complaints</title>
 
     <!--Styling-->
-    <link rel="stylesheet" href="/assets/css/reports.css">
+    <link rel="stylesheet" href="../../assets/css/reports.css" type="text/css">
 
     <!--html2pdf library-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
@@ -16,13 +16,13 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!--es6-promise library-->
-    <script src="\assets\js\es6-promise-master\es6-promise.auto.min.js"></script>
+    <script src="../../assets/js/es6-promise-master/lib/es6-promise.auto.js"></script>
     <!--jspdf library-->
-    <script src="\assets\js\jsPDF-master\jspdf.min.js"></script>
+    <script src="../../assets/js/jsPDF-master/dist/jspdf.es.min.js"></script>
     <!--html2canvas library-->
-    <script src="\assets\js\html2canvas-master\html2canvas.min.js"></script>
+    <script src="../../assets/js/html2canvas-master/package.json"></script>
     <!--html2pdf library-->
-    <script src="assets\js\html2pdf.js-master\html2pdf.min.js"></script>
+    <script src="../../assets/js/html2pdf.js-master/dist/html2pdf.min.js"></script>
 
 </head>
 
@@ -36,12 +36,27 @@
             <div class="header">COMPLAINTS</div>
             <div class="contents">
 
-                <p class="det">Complaint No.</p>
-                <p class="det">Date: </p>
+                <div class="det_wrap">
+                    <p class="det">Complaint No. &nbsp</p>
+                    <p class="detret"> 3</p>
+                </div>
+                <div class="det_wrap">
+                    <p class="det">Date: &nbsp</p>
+                    <p class="detret"> 3</p>
+                </div>
                 <br>
-                <p class="det">Complainant: </p>
-                <p class="det">Complaint Date: </p>
-                <p class="det">Subject of Complaint: </p>
+                <div class="det_wrap">
+                    <p class="det">Complainant: &nbsp</p>
+                    <p class="detret"> 3</p>
+                </div>
+                <div class="det_wrap">
+                    <p class="det">Complaint Date: &nbsp</p>
+                    <p class="detret"> 3</p>
+                </div>
+                <div class="det_wrap">
+                    <p class="det">Subject of Complaint: &nbsp</p>
+                    <p class="detret"> 3</p>
+                </div>
                 <br>
                 <p class="det">Details: </p>
 
@@ -122,7 +137,7 @@
         </div>
     </div>
 
-    <script src="/assets/js/print.js"></script>
+    <script src="../../assets/js/print.js"></script>
 </body>
 
 </html>
