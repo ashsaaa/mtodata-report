@@ -39,6 +39,7 @@ p {
 .detret{
     font-size: 12pt;
 }
+
 .det_con_Desc {
     font-size: 10pt;
 }
@@ -56,5 +57,9 @@ p {
 
 .EPName{
     font-size: 22pt;
-    margin: 50px 0;
+    margin: 20px 0;
+}
+
+#ep_highlights{
+    font-style: italic
 }
