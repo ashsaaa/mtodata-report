@@ -21,7 +21,6 @@ p {
     font-size: 36pt;
     border-bottom: 1px solid;
     margin-bottom: 20px;
-
 }
 
 .det {
@@ -70,7 +69,9 @@ table {
     margin-bottom: 20px;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid black;
     border-collapse: collapse;
     padding: 5px;
@@ -88,6 +89,55 @@ table td {
     text-align: center;
 }
 
-table tr{
+table tr {
+    page-break-inside: avoid;
+}
+
+#imgplaceholder {
+    height: .7in;
+    width: .7in;
+}
+
+.top p {
+    font-size: 10pt;
+    margin: 5px 0;
+    letter-spacing: 1px;
+}
+
+.top {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#top_title {
+    font-size: 12pt;
+    font-weight: 700;
+}
+
+.top .detret {
+    font-size: 12pt;
+    letter-spacing: 3px;
+    margin: 30px 0;
+}
+
+.cert_wrap {
+    line-height: 1.5;
+    font-size: 9.5pt;
+    text-align: justify;
+}
+
+#cert_wrap01 {
+    margin-left: 40px;
+}
+
+#signature {
+    text-align: right;
+}
+
+#cert_con {
+    padding: 0 10px;
+}
+
+#cert_wrapp{
     page-break-inside: avoid;
 }
