@@ -30,13 +30,13 @@ p {
     font-weight: bold;
 }
 
-.det_wrap{
+.det_wrap {
     display: flex;
     align-items: center;
     height: 20px;
 }
 
-.detret{
+.detret {
     font-size: 12pt;
 }
 
@@ -44,7 +44,7 @@ p {
     font-size: 10pt;
 }
 
-.det_con{
+.det_con {
     margin-bottom: 20px;
 }
 
@@ -55,11 +55,39 @@ p {
     font-style: italic;
 }
 
-.EPName{
+.EPName {
     font-size: 22pt;
     margin: 20px 0;
 }
 
-#ep_highlights{
+#ep_highlights {
     font-style: italic
+}
+
+table {
+    width: 98%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table th {
+    background-color: black;
+    color: white;
+    margin: 10px 0;
+    font-size: 12pt;
+}
+
+table td {
+    font-size: 10pt;
+    text-align: center;
+}
+
+table tr{
+    page-break-inside: avoid;
 }
