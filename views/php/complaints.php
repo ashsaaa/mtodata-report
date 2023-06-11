@@ -37,10 +37,7 @@ $currentDate = date('Y-m-d');
     <button id="save">Generate as PDF</button>
 
     <div class="container" id="container">
-        <div class="wrapper">
-            <div class="header">COMPLAINTS</div>
-            <div class="contents">
-
+        
                 <!--DB Connection-->
                 <?php
 
@@ -53,7 +50,8 @@ $currentDate = date('Y-m-d');
                 }
 
                 //data retrieval
-                $sql = "SELECT * FROM complaint_details";
+                $sql = "SELECT *,
+                DATE_FORMAT(date_created, '%Y-%m-%d') AS complaint_date FROM complaint_details";
                 $result = $conn->query($sql);
 
                 if ($result === false) {
@@ -67,7 +65,9 @@ $currentDate = date('Y-m-d');
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "
-                    
+                    <div class='wrapper' id='cert_wrapp'>
+            <div class='header' >COMPLAINTS</div>
+            <div class='contents'>
                     <div class='det_wrap'>
                     <p class='det'>Complaint No. &nbsp</p>
                     <p class='detret'>" . $row["id"] . "</p>
@@ -83,7 +83,7 @@ $currentDate = date('Y-m-d');
                 </div>
                 <div class='det_wrap'>
                     <p class='det'>Complaint Date: &nbsp</p>
-                    <p class='detret'>" . $row["date_created"] . "</p>
+                    <p class='detret'>" . $row["complaint_date"] . "</p>
                 </div>
                 <div class='det_wrap'>
                 <p class='det'>Subject of Complaint: &nbsp</p>
@@ -94,6 +94,14 @@ $currentDate = date('Y-m-d');
                     <div class='det_con'>
                     <p class='det_con_Desc'>" . $row["details"] . "</p>
                 </div>
+
+                <div class='footer'>
+                    Footer Statements here Lorem ipsum dolor sit amet,
+                    consectetur adipiscing elit. Nunc posuere orci vitae nisl faucibus,
+                    nec rutrum metus rutrum. Curabitur efficitur mi et ligula tempus,
+                    eu placerat mauris porttitor. In consectetur ultrices enim,
+                    ut vestibulum dui dignissim non.
+                </div>
     ";
                 }
 
@@ -101,14 +109,6 @@ $currentDate = date('Y-m-d');
                 $conn->close();
 
                 ?>
-
-                <div class="footer">
-                    Footer Statements here Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Nunc posuere orci vitae nisl faucibus,
-                    nec rutrum metus rutrum. Curabitur efficitur mi et ligula tempus,
-                    eu placerat mauris porttitor. In consectetur ultrices enim,
-                    ut vestibulum dui dignissim non.
-                </div>
 
             </div>
         </div>

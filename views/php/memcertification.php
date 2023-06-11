@@ -1,3 +1,9 @@
+<?php
+
+$currentDate = date('Y-m-d');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -123,7 +129,7 @@
 
                     <p class='cert_wrap' id='signature'>
                         <strong>[Signature of the Association President]</strong> <br>
-                        [Date]
+                        " . $currentDate . "
                     </p>
                 </div>"
                     ;
