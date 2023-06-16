@@ -66,7 +66,14 @@ $currentDate = date('Y-m-d');
                 while ($row = $result->fetch_assoc()) {
                     echo "
                     <div class='wrapper' id='cert_wrapp'>
-            <div class='header' >COMPLAINTS</div>
+                    <div class='header' id='cert_wrapp'>
+                    <div class='top'>
+                        <img src='../../assets/img/placeholder.jpg' id='imgplaceholder'>
+                        <p id='top_title'>Marulas Tricycle Operators and Drivers' Association (MTODA)</p>
+                        <p>3s Center Marulas, Valenzuela City, 1440</p>
+                        <p>+63 (XXX) YYY ZZZZ</p>
+                    </div>
+                </div>
             <div class='contents'>
                     <div class='det_wrap'>
                     <p class='det'>Complaint No. &nbsp</p>
