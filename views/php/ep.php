@@ -65,19 +65,17 @@ $currentDate = date('Y-m-d');
         echo "
                     <div class='container' id='container'>
                         <div class='wrapper'>
-                            <div class='header'>Events and Programs</div>
-                            <div class='contents'>
-                            <div class='det_wrap'>
-                                <p class='det'>Date: &nbsp</p>
-                                <p class='detret'>" . $currentDate . "</p>
-                            </div>
-                            <div class='det_wrap'>
-                                <p class='det'>Requested by: [username here] &nbsp</p>
-                                <p class='detret'>" . $row["id"] . "</p>
-                            </div>
-
+                        <div class='header' id='cert_wrapp'>
+                        <div class='top'>
+                            <img src='../../assets/img/placeholder.jpg' id='imgplaceholder'>
+                            <p id='top_title'>Marulas Tricycle Operators and Drivers' Association (MTODA)</p>
+                            <p>3s Center Marulas, Valenzuela City, 1440</p>
+                            <p>+63 (XXX) YYY ZZZZ</p>
+                        </div>
+                    </div>
+                            
                             <div class='EPName'>" . $row["ep_title"] . "</div>
-                            <p class='detret'>";
+                            <p class='detret' id='center_format'>";
         $column1 = $row["ep_start"];
         $column2 = $row["ep_end"];
         if (!empty($column1) && !empty($column2)) {
