@@ -4,7 +4,7 @@ function save_generate() {
 
     const element = document.getElementById('container');
     var options = {
-        margin: 1,
+        margin: [0.5, 1, 1, 1],
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
@@ -14,8 +14,8 @@ function save_generate() {
 
         for (let i = 1; i <= totalPages; i++) {
             pdf.setFont('Arial', 'italic');
-        pdf.setFontSize(10);
-        pdf.setTextColor(128);
+            pdf.setFontSize(10);
+            pdf.setTextColor(128);
             pdf.setPage(i);
             pdf.text(i + ' of ' + totalPages, pdf.internal.pageSize.getWidth() - 0.75, pdf.internal.pageSize.getHeight() - 0.5);
         }
