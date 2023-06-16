@@ -70,21 +70,20 @@ table {
     margin-bottom: 20px;
 }
 
-table,
-th,
-td {
+.mem_info th,
+.mem_info td {
     border: 1px solid black;
     border-collapse: collapse;
 }
 
-table th {
+.mem_info th {
     background-color: black;
     color: white;
     margin: 10px 0;
     font-size: 12pt;
 }
 
-table td {
+.mem_info td {
     font-size: 10pt;
     text-align: center;
 }
@@ -140,4 +139,32 @@ table tr {
 
 #cert_wrapp{
     page-break-inside: avoid;
+}
+
+#top_IS{
+    font-size: 12pt;
+}
+
+.header_IS {
+    margin-bottom: 20px;
+}
+
+.IS_amount {
+    text-align: right;
+}
+
+.IS_statements{
+    border-color: white;
+}
+
+.to_hide{
+    color: white;
+}
+
+.IS_amount.total_IS {
+    border-bottom: 1px solid black;
+}
+
+.tr_head{
+    font-weight: bold;
 }
