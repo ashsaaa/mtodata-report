@@ -1,3 +1,67 @@
+<?php
+//connection
+include "db_con.php";
+
+//check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+//data retrieval
+$sql = "SELECT account_type, SUM(amount) as total
+                    FROM transaction_finance GROUP BY account_type;";
+$result = $conn->query($sql);
+
+if ($result === false) {
+    die("Error executing the query: " . $conn->error);
+}
+
+if ($result) {
+
+    $revenue = 0;
+    $expenses = 0;
+
+    $net = 0;
+
+    while ($row = $result->fetch_assoc()) {
+        if ($row['account_type'] === 'Donation') {
+            $don = $row['total'];
+        } else if ($row['account_type'] === 'Contribution') {
+            $con = $row['total'];
+        } else if ($row['account_type'] === 'Expenses - Electricity') {
+            $ele = $row['total'];
+        } else if ($row['account_type'] === 'Expenses - Rent') {
+            $ren = $row['total'];
+        } else if ($row['account_type'] === 'Expenses - Water') {
+            $wat = $row['total'];
+        } else if ($row['account_type'] === 'Programs') {
+            $pro = $row['total'];
+        } else if ($row['account_type'] === 'Renewal') {
+            $rnw = $row['total'];
+        } else if ($row['account_type'] === 'New Member') {
+            $new = $row['total'];
+        }
+
+        if (
+            $row['account_type'] === 'Donation' || $row['account_type'] === 'Contribution' ||
+            $row['account_type'] === 'Renewal' || $row['account_type'] === 'New Member'
+        ) {
+            $revenue += $row['total'];
+        }
+
+        if (
+            $row['account_type'] === 'Expenses - Electricity' || $row['account_type'] === 'Expenses - Water' ||
+            $row['account_type'] === 'Expenses - Rent' || $row['account_type'] === 'Programs'
+        ) {
+            $expenses += $row['total'];
+        }
+
+        $net = $revenue - $expenses;
+
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -28,6 +92,8 @@
 
     <!--Button for PDF Generation-->
     <button id='save'>Generate as PDF</button>
+    <?php
+    echo "
 
     <div class='container' id='container'>
         <div class='wrapper'>
@@ -42,130 +108,104 @@
                 <br>
 
                 <table>
-                    <?php
-                    //connection
-                    include "db_con.php";
 
-                    //check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                    <tr>
+                        <td class='tr_head'>Revenues</td>
+                    </tr>
 
-                    //data retrieval
-                    $sql = $sql = "SELECT account_type, SUM(amount) as total
-                    FROM transaction_finance GROUP BY account_type;";
-                    $result = $conn->query($sql);
+                    <tr>
+                        <td class='to_hide'>:</td>
+                    </tr>
 
-                    if ($result === false) {
-                        die("Error executing the query: " . $conn->error);
-                    }
+                    <tr>
+                        <td>Collected contributions</td>
+                        <td class='IS_amount'>P&emsp;" . $con . "</td>
+                    </tr>
+                    <tr>
+                        <td>Renewal</td>
+                        <td class='IS_amount'>" . $rnw . "</td>
+                    </tr>
+                    <tr>
+                        <td>New Members</td>
+                        <td class='IS_amount'>" . $new . "</td>
+                    </tr>
+                    <tr>
+                        <td>Donations</td>
+                        <td class='IS_amount total_IS'>" . $don . "</td>
+                    </tr>
 
-                    if ($result) {
+                    <tr>
+                        <td class='to_hide'>:</td>
+                    </tr>
 
-                        while ($row = $result->fetch_assoc()) {
-                            if ($row['account_type'] === 'Donation') {
-                                $don = $row['total'];
-                            } else if ($row['account_type'] === 'Contribution') {
-                                $con = $row['total'];
-                            } else if ($row['account_type'] === 'Expenses - Electricity') {
-                                $ele = $row['total'];
-                            } else if ($row['account_type'] === 'Expenses - Rent') {
-                                $ren = $row['total'];
-                            } else if ($row['account_type'] === 'Expenses - Water') {
-                                $wat = $row['total'];
-                            } else if ($row['account_type'] === 'Programs') {
-                                $pro = $row['total'];
-                            } else if ($row['account_type'] === 'Renewal') {
-                                $rnw = $row['total'];
-                            } else if ($row['account_type'] === 'New Member') {
-                                $new = $row['total'];
-                            }
+                    <tr>
+                        <td>Total Revenues:</td>
+                        <td></td>
+                        <td class='IS_amount total_IS'>P&emsp;" . $revenue . "</td>
+                    </tr>
 
-                        }
-                    }
+                    <tr>
+                        <td class='to_hide'>:</td>
+                    </tr>
 
-                            echo "
-                    
-                            <tr><td class='tr_head'>Revenues</td></tr>
+                    <tr>
+                        <td class='tr_head'>Operating Expenses</td>
+                    </tr>
 
-                            <tr><td class='to_hide'>:</td></tr>
-                            
-                            <tr>
-                                <td>&emsp;Collected contributions</td>
-                                <td class='IS_amount'>P&emsp;" . $con . "</td>
-                            </tr>
-                            <tr>
-                                <td>&emsp;Renewal</td>
-                                <td class='IS_amount'>" . $rnw . "</td>
-                            </tr>
-                            <tr>
-                                <td>&emsp;New Members</td>
-                                <td class='IS_amount'>" . $new . "</td>
-                            </tr>
-                            <tr>
-                                <td>&emsp;Donations</td>
-                                <td class='IS_amount total_IS'>" . $don . "</td>
-                            </tr>
+                    <tr>
+                        <td class='to_hide'>:</td>
+                    </tr>
 
-                            <tr><td class='to_hide'>:</td></tr>
+                    <tr>
+                        <td>Electricity expenses</td>
+                        <td class='IS_amount'>P&emsp;" . $ele . "</td>
+                    </tr>
 
-                            <tr>
-                                <td>Total Revenues:</td>
-                                <td></td>
-                                <td class='IS_amount total_IS' >P&emsp;123</td>
-                            </tr>
+                    <tr>
+                        <td>Water expenses</td>
+                        <td class='IS_amount'>" . $wat . "</td>
+                    </tr>
+                    <tr>
+                        <td>Rent expenses</td>
+                        <td class='IS_amount'>" . $ren . "</td>
+                    </tr>
+                    <tr>
+                        <td>Program expenses</td>
+                        <td class='IS_amount total_IS'>" . $pro . "</td>
+                    </tr>
 
-                            <tr><td class='to_hide'>:</td></tr>
-                            
-                            <tr> <td class='tr_head'>Operating Expenses</td> </tr>
-                            
-                            <tr><td class='to_hide'>:</td></tr>
+                    <tr>
+                        <td class='to_hide'>:</td>
+                    </tr>
 
-                            <tr>
-                                <td>&emsp;Electricity expenses</td>
-                                <td class='IS_amount'>P&emsp;" . $ele . "</td>
-                            </tr>
+                    <tr>
+                        <td>Total Expenses:</td>
+                        <td></td>
+                        <td class='IS_amount total_IS'>P&emsp;" . $expenses . "</td>
+                    </tr>
 
-                            <tr>
-                                <td>&emsp;Water expenses</td>
-                                <td class='IS_amount'>" . $wat . "</td>
-                            </tr>
-                            <tr>
-                                <td>&emsp;Rent expenses</td>
-                                <td class='IS_amount'>" . $ren . "</td>
-                            </tr>
-                            <tr>
-                                <td>&emsp;Program expenses</td>
-                                <td class='IS_amount total_IS'>" . $pro . "</td>
-                            </tr>
+                    <tr>
+                        <td class='to_hide'>:</td>
+                    </tr>
+                    <tr>
+                        <td class='to_hide'>:</td>
+                    </tr>
 
-                            <tr><td class='to_hide'>:</td></tr>
+                    <tr>
+                        <td class='tr_head'>Net Income:</td>
+                        <td></td>
+                        <td class='IS_amount total_IS'>P&emsp;" . $net . "</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    ";
 
-                            <tr>
-                                <td>Total Expenses:</td>
-                                <td></td>
-                                <td class='IS_amount total_IS'>P&emsp;123</td>
-                            </tr>
+    // close MySQL connection
+    $conn->close()
 
-                           <tr><td class='to_hide'>:</td></tr> <tr><td class='to_hide'>:</td></tr>
-
-                            <tr>
-                                <td class='tr_head'>Net Income:</td>
-                                <td></td>
-                                <td class='IS_amount total_IS'>P&emsp;123</td>
-                            </tr>
-                    </table>
-                </div>
-            </div>";
-                        
-
-
-
-                    // close MySQL connection
-                    $conn->close()
-
-                        ?>
-                    <script src='../../assets/js/print.js'></script>
+        ?>
+    <script src='../../assets/js/print.js'></script>
 </body>
 
 </html>
