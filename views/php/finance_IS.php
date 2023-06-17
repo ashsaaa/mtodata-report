@@ -9,7 +9,7 @@ if ($conn->connect_error) {
 
 //data retrieval
 $sql = "SELECT account_type, SUM(amount) as total
-                    FROM transaction_finance GROUP BY account_type;";
+FROM transaction_finance GROUP BY account_type;";
 $result = $conn->query($sql);
 
 if ($result === false) {
